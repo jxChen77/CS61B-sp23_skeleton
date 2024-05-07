@@ -50,6 +50,12 @@ public class ListExercises {
 
     /** Returns the number of occurrences of the given character in a list of strings. */
     public static int countOccurrencesOfC(List<String> words, char c) {
-        return 0;
+        int count = 0;
+        for (String ele : words) {
+            for (int i = 0; i < ele.length(); i++) {
+                count = ele.charAt(i) == c ? count + 1 : count;
+            }
+        }
+        return count;
     }
 }
