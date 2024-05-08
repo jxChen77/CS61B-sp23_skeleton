@@ -1,6 +1,10 @@
 package aoa.guessers;
 
 import aoa.utils.FileUtils;
+import org.checkerframework.checker.units.qual.C;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +20,50 @@ public class PatternAwareLetterFreqGuesser implements Guesser {
      *  PATTERN. */
     public char getGuess(String pattern, List<Character> guesses) {
         // TODO: Fill in this method.
-        return '?';
+        List<String> wordsMatch = getWords(pattern);
+        Map<Character, Integer> tempFre = getFreq(wordsMatch);
+        int max=0;
+        char maxCh=' ';
+        for (Character ele : tempFre.keySet()) {
+            if (!guesses.contains(ele) && tempFre.get(ele) > max) {
+                max=tempFre.get(ele);
+                maxCh = ele;
+            }
+        }
+        return maxCh;
+
+    }
+
+    public Map<Character, Integer> getFreq(List<String> wordsList) {
+        Map<Character, Integer> result = new HashMap<>();
+        for (String ele : wordsList) {
+            for (char item : ele.toCharArray()) {
+                if (result.containsKey(item)) {
+                    result.put(item, result.get(item) + 1);
+                } else {
+                    result.put(item, 1);
+                }
+            }
+        }
+        return result;
+    }
+
+    public List<String> getWords (String pattern) {
+        List<String> result = new ArrayList<>();
+        int patternLength = pattern.length();
+        for (String ele : words) {
+            boolean add = true;
+            if (ele.length() == patternLength) {
+                for (int i =0; i < patternLength; i++) {
+                    if (pattern.toCharArray()[i] !='-' && pattern.toCharArray()[i] != ele.toCharArray()[i]) {
+                        add = false;
+                        break;
+                    }
+                }
+            }
+            if (add) result.add(ele);
+        }
+        return result;
     }
 
     public static void main(String[] args) {

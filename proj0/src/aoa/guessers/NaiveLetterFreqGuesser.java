@@ -14,7 +14,7 @@ public class NaiveLetterFreqGuesser implements Guesser {
     }
 
     @Override
-    /** Makes a guess which ignores the given pattern. */
+    /** Makes a guess which ignores the given pattern. **/
     public char getGuess(String pattern, List<Character> guesses) {
         return getGuess(guesses);
     }
