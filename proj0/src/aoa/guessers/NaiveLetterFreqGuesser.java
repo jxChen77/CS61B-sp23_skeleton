@@ -5,6 +5,7 @@ import aoa.utils.FileUtils;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class NaiveLetterFreqGuesser implements Guesser {
     private final List<String> words;
@@ -40,7 +41,8 @@ public class NaiveLetterFreqGuesser implements Guesser {
      *  (and therefore isn't present in GUESSES). */
     public char getGuess(List<Character> guesses) {
         // TODO: Fill in this method.
-        Map<Character, Integer> temp = this.getFrequencyMap();
+        Map<Character, Integer> temp = new TreeMap<Character, Integer>(this.getFrequencyMap());
+        //temp.putAll(this.getFrequencyMap());
         int max=0;
         char maxCh=' ';
         for (Character ele : temp.keySet()) {
