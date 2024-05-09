@@ -3,10 +3,7 @@ package aoa.guessers;
 import aoa.utils.FileUtils;
 import org.checkerframework.checker.units.qual.C;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PatternAwareLetterFreqGuesser implements Guesser {
     private final List<String> words;
@@ -21,7 +18,7 @@ public class PatternAwareLetterFreqGuesser implements Guesser {
     public char getGuess(String pattern, List<Character> guesses) {
         // TODO: Fill in this method.
         List<String> wordsMatch = getWords(pattern);
-        Map<Character, Integer> tempFre = getFreq(wordsMatch);
+        Map<Character, Integer> tempFre = new TreeMap<Character, Integer>(getFreq(wordsMatch));
         int max=0;
         char maxCh=' ';
         for (Character ele : tempFre.keySet()) {
@@ -52,16 +49,17 @@ public class PatternAwareLetterFreqGuesser implements Guesser {
         List<String> result = new ArrayList<>();
         int patternLength = pattern.length();
         for (String ele : words) {
-            boolean add = true;
             if (ele.length() == patternLength) {
+                boolean add = true;
                 for (int i =0; i < patternLength; i++) {
                     if (pattern.toCharArray()[i] !='-' && pattern.toCharArray()[i] != ele.toCharArray()[i]) {
                         add = false;
                         break;
                     }
                 }
+                if (add) result.add(ele);
             }
-            if (add) result.add(ele);
+
         }
         return result;
     }
