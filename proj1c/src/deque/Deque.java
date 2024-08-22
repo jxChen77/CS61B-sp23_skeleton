@@ -6,7 +6,7 @@ import java.util.List;
  * Created by hug on 2/4/2017. Methods are provided in the suggested order
  * that they should be completed.
  */
-public interface Deque<T> {
+public interface Deque<T> extends Iterable<T> {
 
     /**
      * Add {@code x} to the front of the deque. Assumes {@code x} is never null.
@@ -76,4 +76,24 @@ public interface Deque<T> {
      * @return element at {@code index} in the deque
      */
     T getRecursive(int index);
+
+    String toString();
+
+    boolean equals(Object obj);
+    public static void main(String[] args) {
+        Deque<String> lld1 = new ArrayDeque<>();
+        Deque<String> lld2 = new ArrayDeque<>();
+
+        lld1.addLast("front");
+        lld1.addLast("middle");
+        lld1.addLast("back");
+        lld2.addLast("front");
+        lld2.addLast("middle");
+        lld2.addLast("back");
+        for (String s : lld1) {
+            System.out.println(s);
+        }
+        System.out.println(lld1);
+        System.out.println(lld1.equals(lld2));
+    }
 }

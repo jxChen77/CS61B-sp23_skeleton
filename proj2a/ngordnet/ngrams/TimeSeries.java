@@ -1,6 +1,8 @@
 package ngordnet.ngrams;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 
 /**
@@ -21,7 +23,6 @@ public class TimeSeries extends TreeMap<Integer, Double> {
     public TimeSeries() {
         super();
     }
-
     /**
      * Creates a copy of TS, but only between STARTYEAR and ENDYEAR,
      * inclusive of both end points.
@@ -29,6 +30,11 @@ public class TimeSeries extends TreeMap<Integer, Double> {
     public TimeSeries(TimeSeries ts, int startYear, int endYear) {
         super();
         // TODO: Fill in this constructor.
+        for(Map.Entry<Integer, Double> i : ts.entrySet()){
+            if(i.getKey() >= startYear && i.getKey() <= endYear){
+                this.put(i.getKey(),i.getValue());
+            }
+        }
     }
 
     /**
@@ -36,7 +42,11 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      */
     public List<Integer> years() {
         // TODO: Fill in this method.
-        return null;
+        List<Integer> returnYears = new ArrayList<>();
+        for(Map.Entry<Integer, Double> i : this.entrySet()){
+            returnYears.add(i.getKey());
+        }
+        return returnYears;
     }
 
     /**
@@ -45,7 +55,11 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      */
     public List<Double> data() {
         // TODO: Fill in this method.
-        return null;
+        List<Double> returnData = new ArrayList<>();
+        for(Map.Entry<Integer, Double> i : this.entrySet()){
+            returnData.add(i.getValue());
+        }
+        return returnData;
     }
 
     /**
@@ -59,6 +73,7 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      */
     public TimeSeries plus(TimeSeries ts) {
         // TODO: Fill in this method.
+
         return null;
     }
 

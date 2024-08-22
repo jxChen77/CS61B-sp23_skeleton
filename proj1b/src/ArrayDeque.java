@@ -1,6 +1,3 @@
-package deque;
-
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -97,58 +94,6 @@ public class ArrayDeque<T> implements Deque<T>{
         return this.items[(this.nextFirst+1+index) % this.items.length];
     }
 
-    @Override
-    public T getRecursive(int index){
-        return this.get(index);
-    }
-
-    public String toString(){
-//        String returnString = "[";
-//        for(int i = 0; i < this.size-1; i++)
-//            returnString+=(this.get(i).toString() + ", ");
-//
-//        returnString += (this.get(this.size-1)+"]");
-//        return returnString;
-        return this.toList().toString();
-    }
-
-    public boolean equals(Object other) {
-        if(this == other) return true;
-        if(other instanceof ArrayDeque){
-            if(this.size != ((ArrayDeque<?>) other).size) return false;
-            for(int i = 0; i < this.size; i++){
-                if(this.get(i) != ((ArrayDeque<?>) other).get(i)) return false;
-            }
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public Iterator<T> iterator() {
-        return new ArrayDeque.ArrayDequeIterator() ;
-    }
-
-    public class ArrayDequeIterator implements Iterator<T> {
-        private int wizPos;
-
-
-        public void ArrayDequeIterator(){
-            this.wizPos = 0;
-        }
-
-        @Override
-        public boolean hasNext() {
-            return this.wizPos < size;
-        }
-
-        @Override
-        public T next() {
-            T returnItem = items[(nextFirst + wizPos + 1) % items.length];
-            this.wizPos++;
-            return returnItem;
-        }
-    }
     public static void main(String[] args) {
         Deque<Integer> ad = new ArrayDeque<>();
         for(int i = 0; i <= 100; i++){
@@ -163,4 +108,3 @@ public class ArrayDeque<T> implements Deque<T>{
         System.out.println(ad.toList());
     }
 }
-

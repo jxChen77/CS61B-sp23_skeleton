@@ -1,7 +1,4 @@
-package deque;
-
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class LinkedListDeque<T> implements Deque<T>  {
@@ -125,54 +122,6 @@ public class LinkedListDeque<T> implements Deque<T>  {
         return null;
 
     }
-    @Override
-    public String toString(){
-//        String returnString = "[";
-//        for(int i = 0; i < this.size-1; i++)
-//            returnString+=(this.get(i).toString() + ", ");
-//
-//        returnString += (this.get(this.size-1)+"]");
-//        return returnString;
-        return this.toList().toString();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if(this == other) return true;
-        if(other instanceof LinkedListDeque){
-            if(this.size != ((LinkedListDeque<?>) other).size) return false;
-            for(int i = 0; i < this.size; i++){
-                if(this.get(i) != ((LinkedListDeque<?>) other).get(i)) return false;
-            }
-            return true;
-        }
-        return false;
-    }
-
-    public Iterator<T> iterator(){
-        return new LinkedListDeque.LinkedListDequeIterator();
-    }
-
-    public class LinkedListDequeIterator implements Iterator<T> {
-        private Node selfNode;
-
-        public LinkedListDequeIterator(){
-            this.selfNode = first;
-        }
-
-        @Override
-        public boolean hasNext() {
-            return this.selfNode.next != last;
-        }
-
-        @Override
-        public T next() {
-            this.selfNode = this.selfNode.next;
-            T returnItem = this.selfNode.value;
-            return returnItem;
-        }
-    }
-
     public static void main(String[] args) {
         Deque<Integer> lld = new LinkedListDeque<>();
         lld.addFirst(2);
@@ -180,8 +129,7 @@ public class LinkedListDeque<T> implements Deque<T>  {
         lld.addLast(1);
         lld.addFirst(4);
 
-        System.out.println(lld);
+        System.out.println(lld.toList());
         int value1 = lld.get(1);
     }
 }
-
